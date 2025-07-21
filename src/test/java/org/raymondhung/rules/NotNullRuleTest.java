@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.raymondhung.data.SourceData;
 import org.raymondhung.results.ValidationResult;
@@ -11,6 +13,7 @@ import org.raymondhung.results.ValidationResult;
 class NotNullRuleTest {
 
   @Test
+  @DisplayName("Should pass when no null values")
   void shouldPassWhenNoNullValues() {
     SourceData mockedData = mock(SourceData.class);
     when(mockedData.getColumn("email"))
@@ -28,6 +31,7 @@ class NotNullRuleTest {
   }
 
   @Test
+  @DisplayName("Should fail when null values")
   void shouldFailWhenNullValues() {
     SourceData mockedData = mock(SourceData.class);
     when(mockedData.getColumn("email")).thenReturn(Arrays.asList("user1@test.com", null));
